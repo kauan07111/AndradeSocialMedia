@@ -3,27 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Cartão 3D Futurista</title>
+    <title>Cartão Social Media 3D</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <div class="card">
+        <input type="checkbox" id="card-toggle" style="display: none;">
+        
+        <label for="card-toggle" class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <img src="fotos/frente.png" alt="Frente do Cartão">
+                    <img src="fotos/frente.png" alt="Frente">
                 </div>
                 <div class="card-back">
-                    <img src="fotos/verso.png" alt="Verso do Cartão">
+                    <img src="fotos/verso.png" alt="Verso">
                 </div>
             </div>
-        </div>
+        </label>
 
-        <a href="https://wa.me/5541998528552" class="btn-whatsapp" target="_blank">
-            FALE COMIGO AGORA
-        </a>
+        <a href="https://wa.me/5541998528552" class="btn btn-whatsapp" target="_blank">FALE COMIGO AGORA</a>
+        
+        <div class="btn btn-accordion" id="toggleBtn">O Que vai mudar com o social media?</div>
+
+        <div class="accordion-content" id="accordion">
+            <h2>Transforme sua Presença em <span class="highlight">Lucro</span></h2>
+            <div class="stats-grid">
+                <div class="stat-card"><b>+100%</b> Presença Digital</div>
+                <div class="stat-card"><b>74%</b> Compram via Social</div>
+                <div class="stat-card"><b>3.2x</b> Mais Conversão</div>
+            </div>
+            <div class="persuasive-text">
+                <p>Ter um Social Media não é luxo, é sobrevivência:</p>
+                <ul>
+                    <li><strong class="highlight">Autoridade:</strong> Líder no seu nicho.</li>
+                    <li><strong class="highlight">Estratégia:</strong> Foco no cliente ideal.</li>
+                    <li><strong class="highlight">Tempo:</strong> Eu cuido do crescimento, você do negócio.</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
+    <script>
+        // Apenas para a sanfona, o giro agora é via CSS
+        const toggleBtn = document.getElementById('toggleBtn');
+        const accordion = document.getElementById('accordion');
+
+        toggleBtn.addEventListener('click', () => {
+            accordion.classList.toggle('open');
+            if (accordion.classList.contains('open')) {
+                setTimeout(() => {
+                    accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+            }
+        });
+    </script>
 </body>
 </html>
