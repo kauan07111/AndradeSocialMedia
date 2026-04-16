@@ -356,3 +356,253 @@ body {
     overflow-y: auto; /* Permite scroll vertical */
     overflow-x: hidden; /* Evita scroll horizontal */
 }
+@media (max-width: 480px) {
+    /* Ajusta o tamanho do cartão para não cortar nas bordas */
+    .card {
+        width: 300px; /* Era 350px */
+        height: 172px; /* Proporção mantida */
+    }
+
+    /* Diminui o tamanho dos botões para caber melhor */
+    .btn {
+        min-width: 90%; 
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+
+    /* Ajusta a seção da sanfona */
+    .accordion-content h2 {
+        font-size: 1.4rem;
+    }
+
+    /* Coloca os cards de estatísticas em uma única coluna no celular */
+    .stats-grid {
+        grid-template-columns: 1fr; 
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card b {
+        font-size: 24px;
+    }
+
+    .persuasive-text {
+        font-size: 15px; /* Texto um pouco menor para facilitar leitura */
+    }
+}
+/* ESTILO DO CARTÃO 3D COM PROPORÇÃO 900x450 */
+.card {
+    /* No desktop ele tem 450px de largura. No celular, ele ocupa 90% da largura da tela */
+    width: 90vw; 
+    max-width: 450px; 
+    
+    /* A altura é calculada para manter a proporção exata de 900x450 (metade da largura) */
+    aspect-ratio: 900 / 450; 
+    
+    perspective: 1200px;
+    animation: naniteAssemble 1.5s ease-out forwards;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* Garante que as imagens preencham o card sem distorcer */
+.card-front img, .card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Como a proporção do card já é 900x450, o 'fill' encaixa perfeito */
+    display: block;
+}
+@media (max-width: 480px) {
+    .container {
+        gap: 20px; /* Diminui o espaço entre botões no celular */
+    }
+
+    .card {
+        max-width: 320px; /* Limite de segurança para celulares pequenos */
+    }
+
+    .btn {
+        width: 85%; /* Botões acompanham a largura do card */
+        min-width: unset;
+        font-size: 12px;
+    }
+
+    .accordion-content.open {
+        padding: 25px 15px;
+    }
+}
+/* ESTILO DO CARTÃO 3D */
+.card {
+    width: 90vw; 
+    max-width: 400px; /* Reduzi um pouco para ficar mais elegante no PC */
+    height: calc(90vw / 2); /* Força a proporção 2:1 no mobile */
+}
+
+/* No desktop, a altura é metade do max-width */
+@media (min-width: 450px) {
+    .card {
+        height: 200px; 
+    }
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* A classe flipped agora usa rotateY(180deg) de forma limpa */
+.card-inner.flipped {
+    transform: rotateY(180deg) !important;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Suporte para Safari/iOS */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #050505;
+    background-image: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    padding: 20px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/* --- LÓGICA DO CARTÃO --- */
+.card {
+    width: 90vw;
+    max-width: 400px;
+    height: calc(90vw / 2); /* Proporção 2:1 */
+    cursor: pointer;
+    perspective: 1000px;
+    display: block;
+}
+
+@media (min-width: 450px) {
+    .card { height: 200px; }
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* O GRANDE SEGREDO: Se o checkbox estiver marcado, gira o card-inner */
+#card-toggle:checked + .card .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+}
+
+/* --- BOTÕES E SANFONA --- */
+.btn {
+    text-decoration: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+.btn-whatsapp { background: #25d366; border: none; }
+.btn-accordion { background: rgba(255, 255, 255, 0.05); }
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    width: 90%;
+    max-width: 700px;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.accordion-content.open {
+    max-height: 1000px;
+    opacity: 1;
+    padding: 20px;
+}
+
+.highlight { color: #25d366; }
+.stats-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 20px 0; }
+@media (min-width: 600px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.stat-card {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 10px;
+    border-bottom: 3px solid #25d366;
+    text-align: center;
+}
